@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="NotepadApp.Views.FindReplaceDialog"
+        Title="Bul ve Değiştir" Height="200" Width="400"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Bul:" Margin="0,0,0,5"/>
+        <TextBox x:Name="FindTextBox" Grid.Row="1" Margin="0,0,0,10"/>
+
+        <TextBlock Grid.Row="2" Text="Değiştir:" Margin="0,0,0,5" IsVisible="{Binding IsReplaceMode}"/>
+        <TextBox x:Name="ReplaceTextBox" Grid.Row="3" Margin="0,0,0,10" IsVisible="{Binding IsReplaceMode}"/>
+
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Bul Sonraki" Click="FindNext_Click" Width="100" Margin="5,0"/>
+            <Button Content="Değiştir" Click="Replace_Click" Width="100" Margin="5,0" IsVisible="{Binding IsReplaceMode}"/>
+            <Button Content="Tümünü Değiştir" Click="ReplaceAll_Click" Width="120" Margin="5,0" IsVisible="{Binding IsReplaceMode}"/>
+            <Button Content="İptal" Click="Cancel_Click" Width="100" Margin="5,0"/>
+        </StackPanel>
+
+        <CheckBox x:Name="MatchCaseCheckBox" Grid.Row="4" Content="Büyük/küçük harf duyarlı" VerticalAlignment="Top" Margin="0,10,0,0"/>
+    </Grid>
+</Window>

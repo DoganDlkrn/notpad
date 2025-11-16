@@ -1,0 +1,130 @@
+═══════════════════════════════════════════════════════════════
+  NOTEPADAPP - HIZLI BAŞLANGIÇ KILAVUZU
+═══════════════════════════════════════════════════════════════
+
+📌 ÖNEMLİ: Bu uygulama sadece WINDOWS işletim sisteminde çalışır!
+
+═══════════════════════════════════════════════════════════════
+  ADIM 1: GEREKSINIMLER
+═══════════════════════════════════════════════════════════════
+
+✅ Windows 10 veya Windows 11
+✅ .NET 8.0 SDK (yüklü değilse: https://dotnet.microsoft.com/download)
+
+═══════════════════════════════════════════════════════════════
+  ADIM 2: PROJEYİ ÇALIŞTIRMA
+═══════════════════════════════════════════════════════════════
+
+YÖNTEM 1 - Terminal/CMD ile:
+─────────────────────────────
+1. Windows Terminal veya CMD'yi açın
+2. Proje klasörüne gidin:
+   cd C:\Users\KullaniciAdi\Desktop\notepad
+
+3. Şu komutları sırayla çalıştırın:
+   dotnet restore
+   dotnet build
+   dotnet run
+
+YÖNTEM 2 - Visual Studio ile:
+──────────────────────────────
+1. Visual Studio 2022'yi açın
+2. File > Open > Project/Solution
+3. NotepadApp.csproj dosyasını seçin
+4. F5 tuşuna basın
+
+YÖNTEM 3 - Visual Studio Code ile:
+───────────────────────────────────
+1. VS Code'u açın
+2. File > Open Folder ile proje klasörünü açın
+3. Terminal açın (Ctrl + `)
+4. Şu komutları çalıştırın:
+   dotnet restore
+   dotnet build
+   dotnet run
+
+═══════════════════════════════════════════════════════════════
+  ADIM 3: İLK KULLANIM
+═══════════════════════════════════════════════════════════════
+
+Uygulama açıldığında:
+• Boş bir sekme ile başlar
+• Menü çubuğu üstte
+• Araç çubuğu menünün altında
+• Durum çubuğu en altta
+
+═══════════════════════════════════════════════════════════════
+  TEMEL KULLANIM
+═══════════════════════════════════════════════════════════════
+
+📝 Metin Yazma:
+   - Direkt yazmaya başlayabilirsiniz
+
+💾 Dosya Kaydetme:
+   - Ctrl+S veya Dosya > Kaydet
+
+🔍 Arama:
+   - Ctrl+F ile arama yapın
+
+📄 Yeni Dosya:
+   - Ctrl+N ile yeni sekme açın
+
+🔍 Bul ve Değiştir:
+   - Ctrl+F: Bul
+   - Ctrl+H: Değiştir
+
+═══════════════════════════════════════════════════════════════
+  KLAVYE KISAYOLLARI
+═══════════════════════════════════════════════════════════════
+
+Ctrl+N      → Yeni dosya
+Ctrl+O      → Dosya aç
+Ctrl+S      → Kaydet
+Ctrl+Shift+S → Farklı kaydet
+Ctrl+P      → Yazdır
+Ctrl+Z      → Geri al
+Ctrl+Y      → Yinele
+Ctrl+X      → Kes
+Ctrl+C      → Kopyala
+Ctrl+V      → Yapıştır
+Ctrl+A      → Tümünü seç
+Ctrl+F      → Bul
+Ctrl+H      → Değiştir
+Ctrl+G      → Satıra git
+F5          → Tarih/Saat ekle
+F11         → Tam ekran
+Ctrl++      → Yakınlaştır
+Ctrl+-      → Uzaklaştır
+Ctrl+0      → Varsayılan yakınlaştırma
+
+═══════════════════════════════════════════════════════════════
+  SORUN GİDERME
+═══════════════════════════════════════════════════════════════
+
+❌ "dotnet komutu bulunamadı" hatası:
+   → .NET 8.0 SDK'yı yükleyin
+   → Terminal'i yeniden başlatın
+
+❌ Derleme hataları:
+   → dotnet restore komutunu çalıştırın
+   → Visual Studio'da Build > Rebuild Solution
+
+❌ Uygulama açılmıyor:
+   → Windows sürümünüzü güncelleyin
+   → .NET 8.0 Runtime'ı yükleyin
+
+═══════════════════════════════════════════════════════════════
+  EXE DOSYASI OLUŞTURMA
+═══════════════════════════════════════════════════════════════
+
+Uygulamayı .exe olarak derlemek için:
+
+dotnet publish -c Release -r win-x64 --self-contained
+
+Çıktı: bin/Release/net8.0-windows/win-x64/publish/ klasöründe
+
+═══════════════════════════════════════════════════════════════
+
+Daha fazla bilgi için README.md dosyasına bakın.
+
+

@@ -1,0 +1,160 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:NotepadApp.UserControls"
+        x:Class="NotepadApp.MainWindow"
+        Title="NotepadApp" Height="700" Width="1000"
+        WindowStartupLocation="CenterScreen">
+    <Window.Styles>
+        <Style Selector="MenuItem">
+            <Setter Property="Padding" Value="8,4"/>
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="3"/>
+        </Style>
+        <Style Selector="Button:pointerover">
+            <Setter Property="Background" Value="#005A9E"/>
+        </Style>
+        <Style Selector="Button:pressed">
+            <Setter Property="Background" Value="#004578"/>
+        </Style>
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style Selector="TabControl">
+            <Setter Property="Background" Value="#FFFFFF"/>
+        </Style>
+    </Window.Styles>
+    
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Menü Çubuğu -->
+        <Menu Grid.Row="0" Background="#2D2D30" Foreground="White" BorderBrush="#007ACC" BorderThickness="0,0,0,2">
+            <MenuItem Header="Dosya">
+                <MenuItem Header="Yeni" Command="{Binding NewFileCommand}"/>
+                <MenuItem Header="Aç..." Command="{Binding OpenFileCommand}"/>
+                <MenuItem Header="Kaydet" Command="{Binding SaveFileCommand}"/>
+                <MenuItem Header="Farklı Kaydet..." Command="{Binding SaveAsFileCommand}"/>
+                <Separator/>
+                <MenuItem Header="Yazdır..." Command="{Binding PrintCommand}"/>
+                <Separator/>
+                <MenuItem Header="Çıkış" Command="{Binding ExitCommand}"/>
+            </MenuItem>
+
+            <MenuItem Header="Düzenle">
+                <MenuItem Header="Geri Al" Command="{Binding UndoCommand}"/>
+                <MenuItem Header="Yinele" Command="{Binding RedoCommand}"/>
+                <Separator/>
+                <MenuItem Header="Kes" Command="{Binding CutCommand}"/>
+                <MenuItem Header="Kopyala" Command="{Binding CopyCommand}"/>
+                <MenuItem Header="Yapıştır" Command="{Binding PasteCommand}"/>
+                <Separator/>
+                <MenuItem Header="Bul..." Command="{Binding FindCommand}"/>
+                <MenuItem Header="Değiştir..." Command="{Binding ReplaceCommand}"/>
+                <Separator/>
+                <MenuItem Header="Tümünü Seç" Command="{Binding SelectAllCommand}"/>
+                <MenuItem Header="Tarih/Saat" Command="{Binding InsertDateTimeCommand}"/>
+            </MenuItem>
+
+            <MenuItem Header="Biçim">
+                <MenuItem Header="Yazı Tipi..." Command="{Binding FontDialogCommand}"/>
+                <MenuItem Header="Sözcük Kaydırma" Command="{Binding ToggleWordWrapCommand}"/>
+            </MenuItem>
+
+            <MenuItem Header="Görünüm">
+                <MenuItem Header="Yakınlaştır" Command="{Binding ZoomInCommand}"/>
+                <MenuItem Header="Uzaklaştır" Command="{Binding ZoomOutCommand}"/>
+                <MenuItem Header="Varsayılan Yakınlaştırma" Command="{Binding ZoomResetCommand}"/>
+                <Separator/>
+                <MenuItem Header="Satır Numaraları" Command="{Binding ToggleLineNumbersCommand}"/>
+                <MenuItem Header="Durum Çubuğu" Command="{Binding ToggleStatusBarCommand}"/>
+                <Separator/>
+                <MenuItem Header="Tam Ekran" Command="{Binding ToggleFullScreenCommand}"/>
+            </MenuItem>
+
+            <MenuItem Header="Yardım">
+                <MenuItem Header="Hakkında..." Command="{Binding AboutCommand}"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Araç Çubuğu -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#3E3E42" Height="50" Margin="0">
+            <Button Content="📄 Yeni" Command="{Binding NewFileCommand}" Margin="10,8"/>
+            <Button Content="📁 Aç" Command="{Binding OpenFileCommand}" Margin="5,8"/>
+            <Button Content="💾 Kaydet" Command="{Binding SaveFileCommand}" Margin="5,8"/>
+            <Rectangle Width="1" Fill="#555555" Margin="10,8"/>
+            <Button Content="↶ Geri Al" Command="{Binding UndoCommand}" Margin="10,8"/>
+            <Button Content="↷ Yinele" Command="{Binding RedoCommand}" Margin="5,8"/>
+            <Separator Margin="5,0"/>
+            <Button Content="Kes" Command="{Binding CutCommand}" Margin="5"/>
+            <Button Content="Kopyala" Command="{Binding CopyCommand}" Margin="5"/>
+            <Button Content="Yapıştır" Command="{Binding PasteCommand}" Margin="5"/>
+            <Separator Margin="5,0"/>
+            <Button Content="Bul" Command="{Binding FindCommand}" Margin="5"/>
+            <Separator Margin="5,0"/>
+            <TextBlock Text="Yakınlaştırma:" VerticalAlignment="Center" Margin="5,0"/>
+            <Button Content="+" Command="{Binding ZoomInCommand}" Margin="2"/>
+            <TextBlock Text="{Binding ZoomLevel, StringFormat='{}{0}%'}" VerticalAlignment="Center" MinWidth="50" Margin="5,0"/>
+            <Button Content="-" Command="{Binding ZoomOutCommand}" Margin="2"/>
+            <Button Content="100%" Command="{Binding ZoomResetCommand}" Margin="2"/>
+        </StackPanel>
+
+        <!-- Sekmeler ve Metin Editörü -->
+        <TabControl x:Name="TabControl" Grid.Row="2" 
+                    ItemsSource="{Binding Documents}"
+                    SelectedItem="{Binding CurrentDocument}"
+                    Background="White">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding DisplayName}"/>
+                        <Button Content="×" Width="20" Height="20" Margin="5,0,0,0" 
+                                Click="CloseTab_Click" Tag="{Binding}"
+                                Background="Transparent" BorderThickness="0"
+                                Cursor="Hand"/>
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <controls:TextEditor Document="{Binding}"/>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+
+        <!-- Durum Çubuğu -->
+        <Border Grid.Row="3" Background="#007ACC" BorderBrush="#005A9E" BorderThickness="0,1,0,0" 
+                IsVisible="{Binding ShowStatusBar}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding StatusText}" Margin="10,5" Foreground="White" FontWeight="Medium"/>
+                <Rectangle Grid.Column="1" Width="1" Fill="#005A9E" Margin="5,5"/>
+                <TextBlock Grid.Column="2" Text="{Binding LineColumnInfo}" Margin="10,5" Foreground="White"/>
+                <Rectangle Grid.Column="3" Width="1" Fill="#005A9E" Margin="5,5"/>
+                <TextBlock Grid.Column="4" Text="{Binding WordCountInfo}" Margin="10,5" Foreground="White"/>
+                <Rectangle Grid.Column="5" Width="1" Fill="#005A9E" Margin="5,5"/>
+                <TextBlock Grid.Column="6" Text="{Binding CharacterCountInfo}" Margin="10,5" Foreground="White"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
