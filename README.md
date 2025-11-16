@@ -1,23 +1,20 @@
 # NotepadApp - Gelişmiş Metin Düzenleyici
 
-Modern ve kapsamlı bir notepad uygulaması. C# ve WPF kullanılarak geliştirilmiştir.
+Modern ve kapsamlı bir notepad uygulaması. C# ve Avalonia UI kullanılarak geliştirilmiştir. **Windows, macOS ve Linux** üzerinde çalışır.
 
-## Özellikler
+## ✨ Özellikler
 
 ### 📁 Dosya İşlemleri
 - ✅ Yeni dosya oluşturma
 - ✅ Dosya açma (Ctrl+O)
 - ✅ Dosya kaydetme (Ctrl+S)
 - ✅ Farklı kaydetme (Ctrl+Shift+S)
-- ✅ Yazdırma (Ctrl+P)
-- ✅ Son açılan dosyalar listesi
 - ✅ UTF-8 kodlama desteği
 
 ### ✏️ Metin Düzenleme
 - ✅ Geri al / Yinele (Ctrl+Z / Ctrl+Y)
 - ✅ Kes, Kopyala, Yapıştır (Ctrl+X, Ctrl+C, Ctrl+V)
 - ✅ Tümünü seç (Ctrl+A)
-- ✅ Sil (Del)
 - ✅ Tarih/Saat ekleme (F5)
 
 ### 🔍 Arama ve Değiştirme
@@ -36,10 +33,10 @@ Modern ve kapsamlı bir notepad uygulaması. C# ve WPF kullanılarak geliştiril
 ### 👁️ Görünüm Özellikleri
 - ✅ Yakınlaştırma/Uzaklaştırma (Ctrl+Plus/Minus)
 - ✅ Varsayılan yakınlaştırma (Ctrl+0)
-- ✅ Satır numaraları
+- ✅ Satır numaraları (VS Code tarzı)
 - ✅ Durum çubuğu
-- ✅ Karanlık mod
 - ✅ Tam ekran modu (F11)
+- ✅ Modern VS Code tarzı tasarım
 
 ### 📊 Durum Bilgileri
 - ✅ Satır ve sütun bilgisi
@@ -59,24 +56,35 @@ Modern ve kapsamlı bir notepad uygulaması. C# ve WPF kullanılarak geliştiril
 - ✅ Yazı tipi tercihleri
 - ✅ Görünüm tercihleri
 
-## Gereksinimler
+## 🚀 Gereksinimler
 
 - .NET 8.0 SDK veya üzeri
-- Windows işletim sistemi (WPF gereksinimi)
+- Windows, macOS veya Linux işletim sistemi
 
-## Kurulum
+## 📦 Kurulum
 
-1. Projeyi klonlayın veya indirin
-2. Terminal/Command Prompt'ta proje dizinine gidin
-3. Aşağıdaki komutu çalıştırın:
-
+1. Projeyi klonlayın:
 ```bash
-dotnet restore
-dotnet build
-dotnet run
+git clone https://github.com/DoganDlkrn/notpad.git
+cd notpad
 ```
 
-## Proje Yapısı
+2. Proje dizinine gidin ve bağımlılıkları yükleyin:
+```bash
+dotnet restore
+```
+
+3. Projeyi derleyin:
+```bash
+dotnet build NotepadApp.csproj
+```
+
+4. Uygulamayı çalıştırın:
+```bash
+dotnet run --project NotepadApp.csproj
+```
+
+## 📁 Proje Yapısı
 
 ```
 NotepadApp/
@@ -93,24 +101,12 @@ NotepadApp/
 │   └── SettingsService.cs        # Ayarlar servisi
 ├── UserControls/
 │   └── TextEditor.xaml           # Metin editörü kontrolü
-├── Styles/
-│   └── AppStyles.xaml            # Uygulama stilleri
 ├── MainWindow.xaml               # Ana pencere
 ├── App.xaml                      # Uygulama tanımı
 └── NotepadApp.csproj             # Proje dosyası
 ```
 
-## Kullanım
-
-### Temel İşlemler
-
-1. **Yeni Dosya**: Menüden `Dosya > Yeni` veya `Ctrl+N`
-2. **Dosya Aç**: Menüden `Dosya > Aç...` veya `Ctrl+O`
-3. **Kaydet**: Menüden `Dosya > Kaydet` veya `Ctrl+S`
-4. **Bul**: Menüden `Düzenle > Bul...` veya `Ctrl+F`
-5. **Yakınlaştır**: Menüden `Görünüm > Yakınlaştır` veya `Ctrl++`
-
-### Klavye Kısayolları
+## ⌨️ Klavye Kısayolları
 
 | Kısayol | İşlem |
 |---------|-------|
@@ -118,7 +114,6 @@ NotepadApp/
 | Ctrl+O | Dosya aç |
 | Ctrl+S | Kaydet |
 | Ctrl+Shift+S | Farklı kaydet |
-| Ctrl+P | Yazdır |
 | Ctrl+Z | Geri al |
 | Ctrl+Y | Yinele |
 | Ctrl+X | Kes |
@@ -134,15 +129,26 @@ NotepadApp/
 | Ctrl+- | Uzaklaştır |
 | Ctrl+0 | Varsayılan yakınlaştırma |
 
-## Teknik Detaylar
+## 🎨 Tasarım Özellikleri
+
+- **Modern VS Code tarzı arayüz**
+- **Koyu tema menü ve araç çubuğu**
+- **Beyaz metin editörü alanı**
+- **Mavi aksan renkleri**
+- **Emoji'li butonlar**
+- **Hover efektleri**
+- **Profesyonel görünüm**
+
+## 🛠️ Teknik Detaylar
 
 - **Framework**: .NET 8.0
-- **UI Framework**: WPF (Windows Presentation Foundation)
+- **UI Framework**: Avalonia UI 11.0.5
 - **Mimari**: MVVM (Model-View-ViewModel)
 - **Dil**: C#
 - **Kodlama**: UTF-8
+- **Platform**: Cross-platform (Windows, macOS, Linux)
 
-## Geliştirme
+## 📝 Geliştirme
 
 Proje MVVM mimarisi kullanılarak geliştirilmiştir. Yeni özellikler eklemek için:
 
@@ -151,16 +157,14 @@ Proje MVVM mimarisi kullanılarak geliştirilmiştir. Yeni özellikler eklemek i
 3. View dosyalarını `Views/` klasörüne ekleyin
 4. Servis sınıflarını `Services/` klasörüne ekleyin
 
-## Lisans
+## 📄 Lisans
 
 Bu proje eğitim amaçlı geliştirilmiştir.
 
-## Yazar
+## 👤 Yazar
 
-Proje ödevi için geliştirilmiştir.
+**DoganDlkrn**
 
 ---
 
-**Not**: Bu uygulama Windows işletim sistemi için tasarlanmıştır ve WPF framework'ü gerektirir.
-
-
+⭐ **Star** vererek projeyi destekleyebilirsiniz!
